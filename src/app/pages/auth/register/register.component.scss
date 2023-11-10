@@ -1,0 +1,37 @@
+.active-link {
+    border-bottom: 5px solid rgb(174, 39, 192);
+}
+
+a {
+    text-decoration: none;
+    font-size: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-top: 40%;
+}
+
+h1 {
+    text-align: center;
+}

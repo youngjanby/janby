@@ -1,0 +1,30 @@
+<div class="container" [formGroup]="formRegister">
+  <div class="form">
+    <h1>РЕГИСТРАЦИЯ</h1>
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="userName">
+        <mat-error *ngIf="formRegister.controls['userName'].errors?.['minlength']">Минимум 4 символа</mat-error>
+    </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="formRegister.controls['password'].errors?.['minlength']">Минимум 4 символа</mat-error>
+        </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+              <mat-label>Confirm your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="formRegister.errors && formRegister.errors['passwordMismatch']">Пароли должны совпадать</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="formRegister.invalid" (click)="signUp()">Войти</button>
+            <a routerLink="/login" routerLinkActive="active-link">Уже есть аккаунт?</a>
+  </div>
+</div>

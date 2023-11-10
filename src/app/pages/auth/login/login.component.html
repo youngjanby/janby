@@ -1,0 +1,25 @@
+<div class="container" [formGroup]="formLogin">
+  <div class="form">
+    <h1>ВХОД</h1>
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+      <input matInput formControlName="userName">
+      <mat-error *ngIf="formLogin.controls['userName'].errors?.['minlength']">Минимум 4 символа</mat-error>
+    </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="formLogin.controls['password'].errors?.['minlength']">Минимум 4 символа</mat-error>
+        </mat-form-field>
+    
+        
+        <button mat-raised-button color="primary" (click)="signIn()" [disabled]="formLogin.invalid">Войти</button>
+        <div class="center">
+          <a routerLink="/register" routerLinkActive="active-link">Вы не зарегестрированны?</a>
+        </div>
+  </div>
+</div>

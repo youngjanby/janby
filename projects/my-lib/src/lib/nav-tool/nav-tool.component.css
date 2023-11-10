@@ -1,0 +1,48 @@
+.nav-container {
+  margin-left: 50px;
+  margin-top: 40px;
+}
+
+.batNav {
+  border-radius: 20px;
+  box-shadow: none;
+  border: 0;
+}
+
+.active-link {
+  background-color: #c06ecc;
+  border: 0;
+  color: white;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  height: 60px;
+  background-color: rgb(240, 239, 239); /* Цвет фона */
+  color: #fff; /* Цвет текста */
+  border-radius: 20px;
+  border: 0; /* Убираем рамку */
+  color: black;
+  font-size: 15px;
+  transition: all 0.15s ease-in-out
+ }
+
+ button:hover {
+  cursor: pointer;
+}
+
+fa-icon {
+  margin-right: 10px;
+  font-size: 17px;
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
+@keyframes bounce {
+
+  100% {
+    background-color: #c06ecc;
+  }
+}

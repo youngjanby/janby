@@ -1,0 +1,7 @@
+<div class="nav-container">
+    <div *ngFor="let data of dataButton" class="butNav" >
+        <button routerLinkActive="active-link" routerLink={{data.link}}>
+            <fa-icon [icon]="data.icon"></fa-icon>
+            {{data.name}}</button>
+      </div>
+  </div>
