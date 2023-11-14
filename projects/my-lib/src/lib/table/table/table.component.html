@@ -1,0 +1,50 @@
+<div class="containerProducts">
+    <mat-paginator 
+    [length]="dataTable.length" 
+    [pageSizeOptions]="[5, 10, 15]" 
+    aria-label="Select page"
+    (page)="handlePageEvent($event)">
+    </mat-paginator>
+    
+    <div class="buttonCon">
+        <button (click)="openDialog()">Добавить акцию</button>
+    </div>
+</div>
+
+<div class="containerTable">
+<div class="container">
+    <div class="header">
+        <mat-checkbox
+        [checked]="allComplete"
+        [indeterminate]="someComplete()"
+        (change)="setAll($event.checked)"
+        >Категория</mat-checkbox>
+        <div>Подкатегория</div>
+        <div>Бренд</div>
+        <div>Товар</div>
+        <div>Кешбек</div>
+    </div>
+        <div class="productContainer" *ngIf="dataTable">
+            <div class="product" *ngFor="let data of currentData">
+                    <mat-checkbox
+                    color="accent"
+                    [(ngModel)]="data.completed"
+                    (ngModelChange)="check()"
+                    >{{data.category || '-'}}</mat-checkbox>
+                    <div>{{data.subCategory || '-'}}</div>
+                    <div>{{data.brend || '-'}}</div>
+                    <div>{{data.product || '-'}}</div>
+                    <div>{{data.cashback || '-'}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <div class="delete" *ngIf="selectedData">
+            <div>Количество выбранных позиций: {{selectedData}}</div>
+            <div class="deleteButton" (click)="delete()">
+                <fa-icon [icon]="faTrash"></fa-icon>
+                Удалить
+            </div>
+        </div>
+    </div>
+</div>

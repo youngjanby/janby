@@ -12,16 +12,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogWindow } from './table/dialog/dialog-edit-data';
 import { TableComponent } from './table/table/table.component';
-
-
-
-
-
-
-
-
-
-
+import {MatChipsModule} from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -41,6 +34,9 @@ import { TableComponent } from './table/table/table.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   exports: [
     MyLibComponent,

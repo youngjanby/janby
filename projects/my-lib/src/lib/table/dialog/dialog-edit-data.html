@@ -1,0 +1,115 @@
+<div mat-dialog-title class="header">
+    <button class="delete button" (click)="delete()">Сохранить</button>
+    <button class="save button" (click)="save()" [disabled]="this.createForm.invalid">Сохранить и закрыть</button>
+</div>
+<div mat-dialog-content [formGroup]="createForm" class="containerForm">
+  <div>
+    <span class="headers">Название 1С</span>
+    <input type="text" formControlName="nameFrom1C" class="input">
+  </div>
+
+  <div>
+    <span class="headers">Название*</span>
+    <input type="text" formControlName="name" class="input">
+  </div>
+  
+  <div>
+    <span class="headers">Бренд*</span>
+    <input type="text" formControlName="brend" class="input">
+  </div>
+
+  <div>
+    <span class="headers">Артикул</span>
+    <input type="text" formControlName="Article" class="input" >
+  </div>
+  
+  <div class="headers">
+    <span class="headers">Описание*</span>
+    <textarea placeholder="Опишите товар" cols="30" rows="3" ></textarea> 
+  </div>
+  
+  <div class="images headers" >
+    <span>Изображения</span>
+    <div class="imageContainer">
+      <div class="img">
+        <div class="icon">
+          <fa-icon [icon]="image"></fa-icon>
+        </div>
+        <span>TestImage.jpg</span>
+      </div>
+      <div class="deleteImg">
+        <fa-icon [icon]="deleteIcon"></fa-icon>
+      </div>
+    </div>
+    <input placeholder="Вставьте ссылку на Google Drive" type="text" formControlName="images" class="input">
+    <div class="help">
+      <span>Максимум 5 Изображений</span>
+      <span>Размер фото 1000x1000px PNG, JPG, JPEG</span>
+    </div>
+  </div>
+  
+  <div class="headers">
+    <span class="price" >Цена</span>
+    <input type="text" formControlName="price" placeholder="Введите цену" class="input">
+  </div>
+
+  <div class="category headers">
+    <div>
+      <span>Категория*</span>
+      <input type="text" formControlName="category" class="input">
+    </div>
+    <div>
+      <span>Подкатегория*</span>
+      <input type="text" formControlName="subcategory" class="input">
+    </div>  
+  </div>
+
+  <div class="volume headers">
+    <span>Объем*</span>
+    <div class="volumeForm">
+      <input type="text" placeholder="Значение" class="input">
+      <input type="text" placeholder="Артикул" class="input">
+      <fa-icon [icon]="deleteIcon"></fa-icon>
+    </div>
+    <span class="add">+ Добавить Объем</span>
+  </div>
+
+  <div class="features headers">
+    <span>Характеристики*</span>
+    <div class="featuresForm">
+      <input type="text" placeholder="Название Характеристики" class="input">
+      <input type="text" placeholder="Значение Характеристики" class="input">
+      <fa-icon [icon]="deleteIcon"></fa-icon>
+    </div>
+    <div class="help">
+      <span>Максимум 15 Характеристик</span>
+    </div>
+    <span class="add">+ Добавить Характеристику</span>
+  </div>
+
+<div class="tags">
+<span class="headers">Теги товаров</span>
+  <mat-form-field class="example-chip-list" appearance="outline">
+    <mat-chip-grid #chipGrid aria-label="Введите тег">
+      <mat-chip-row *ngFor="let fruit of fruits"
+                    (removed)="remove(fruit)"
+                    [editable]="true"
+                    (edited)="edit(fruit, $event)"
+                    [aria-description]="'press enter to edit ' + fruit.name">
+        {{fruit.name}}
+        <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      <input placeholder="Введите тег"
+             [matChipInputFor]="chipGrid"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)"/>
+    </mat-chip-grid>
+  </mat-form-field>
+  <div class="help">
+    <span>Максимум 120 тегов</span>
+  </div>
+</div>
+</div>
