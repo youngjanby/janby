@@ -5,10 +5,6 @@
     aria-label="Select page"
     (page)="handlePageEvent($event)">
     </mat-paginator>
-    
-    <div class="buttonCon">
-        <button (click)="openDialog()">Добавить акцию</button>
-    </div>
 </div>
 
 <div class="containerTable">
@@ -18,23 +14,20 @@
         [checked]="allComplete"
         [indeterminate]="someComplete()"
         (change)="setAll($event.checked)"
-        >Категория</mat-checkbox>
-        <div>Подкатегория</div>
-        <div>Бренд</div>
-        <div>Товар</div>
-        <div>Кешбек</div>
+        >Название</mat-checkbox>
+        <div>Артикул</div>
     </div>
         <div class="productContainer" *ngIf="dataTable">
             <div class="product" *ngFor="let data of currentData">
+                <div class="gor">
                     <mat-checkbox
                     color="accent"
-                    [(ngModel)]="data.completed"
+                    [(ngModel)]="data.isReady"
                     (ngModelChange)="check()"
-                    >{{data.category || '-'}}</mat-checkbox>
-                    <div>{{data.subCategory || '-'}}</div>
-                    <div>{{data.brend || '-'}}</div>
-                    <div>{{data.product || '-'}}</div>
-                    <div>{{data.cashback || '-'}}</div>
+                    ></mat-checkbox>
+                    <div class="name" (click)="openDialog(data)">{{data.nameFrom1C || '-'}}</div>
+                </div>
+                    <div>{{data.codeFrom1C || '-'}}</div>
             </div>
         </div>
     </div>

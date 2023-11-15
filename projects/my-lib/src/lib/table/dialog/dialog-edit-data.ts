@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { DataTableCreate } from "../../asserts/interfaces";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { faImage, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -8,6 +7,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { inject } from '@angular/core';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
+import { Product } from "../../asserts/interfaces";
+
 @Component({
     selector: 'dialog-edit-data',
     templateUrl: 'dialog-edit-data.html',
@@ -15,7 +16,7 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
   })
   export class DialogWindow implements OnInit {
     constructor(
-      public dialogRef: MatDialogRef<DialogWindow, DataTableCreate | null>,
+      public dialogRef: MatDialogRef<DialogWindow, Product | null>,
       @Inject(MAT_DIALOG_DATA) public data: any
     ) {}
     ngOnInit(): void {
@@ -27,16 +28,16 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
     deleteIcon: IconProp = faTrash
     product: any = []
     createForm: FormGroup = new FormGroup({
-      nameFrom1C: new FormControl(''),
-      name: new FormControl(''),
-      brend: new FormControl(''),
-      Article: new FormControl(''),
+      nameFrom1C: new FormControl(this.data.nameFrom1C),
+      name: new FormControl(this.data.name),
+      brend: new FormControl(this.data.brand.name),
+      Article: new FormControl(this.data.codeFrom1C),
       description: new FormControl(''),
       images: new FormControl(''),
-      price: new FormControl(''),
+      price: new FormControl(this.data.price),
       category: new FormControl(''),
       subcategory: new FormControl(''),
-      volume: new FormControl(''),
+      volume: new FormControl(this.data.volume),
     });
     addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -79,10 +80,10 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
   }
   
     delete() {
-      this.dialogRef.close(null)
+      this.dialogRef.close(this.data)
     }
 
     save() {
-      this.dialogRef.close(this.createForm.getRawValue())
+      this.dialogRef.close(this.data)
     }
   }

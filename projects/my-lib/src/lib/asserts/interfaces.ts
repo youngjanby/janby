@@ -1,18 +1,30 @@
 import { FormControl } from "@angular/forms";
 
+export interface productData extends Product {
+  data: Product[]
+}
 
-
-export interface DataTable extends DataTableCreate {
-    completed: boolean,
+export interface Product extends ProductCreate {
+    isReady: boolean
   }
 
-  export interface DataTableCreate {
-    category: string,
-    subCategory: string,
-    brend: string,
-    product: string,
-    cashback: string,
-  }
+  export interface ProductCreate {
+    id: string
+    name: string
+    nameFrom1C: string
+    codeFrom1C: string
+    price: number
+    volume: string
+    isRetailAllowed: boolean
+    
+    brand: {
+      id: string
+      name: string
+      icon: string
+    }
+    
+    images: string [];
+    }
 
   export type ChangeTypeOfKeys<
   T extends object,

@@ -8,7 +8,7 @@ import {
 import { PageEvent } from '@angular/material/paginator';
 import {  faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
-import { DataPagination, DataTable } from '../../asserts/interfaces';
+import { DataPagination, Product, ProductCreate, productData } from '../../asserts/interfaces';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogWindow } from '../dialog/dialog-edit-data';
 
@@ -19,27 +19,27 @@ import { DialogWindow } from '../dialog/dialog-edit-data';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  newItem: DataTable[] = []
   dataPagination!: DataPagination;
   faTrash = faTrash;
   selectedData: number = 0;
   subject$ = new Subject<number>();
 
   isModalDialogVisible: boolean = false;
-  editedData: DataTable | [] = [];
+  editedData: Product | [] = [];
 
-  @Input() dataTable: DataTable[] = [];
-  @Output() dataTableChange = new EventEmitter<DataTable[]>();
+  @Input()
+  dataTable!: any;
+  @Output() dataTableChange = new EventEmitter<productData>();
 
   allComplete: boolean = false;
   constructor(private dialog: MatDialog) {}
 
-  openDialog(): void {
+  openDialog(data: any): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '700px';
     dialogConfig.height = '1000px';
     dialogConfig.position = { left: '0px' };
-    dialogConfig.data = this.dataTable;
+    dialogConfig.data = data;
     const dialogRef = this.dialog.open(
       DialogWindow,
       dialogConfig
@@ -54,7 +54,7 @@ export class TableComponent implements OnInit {
     return (this.isModalDialogVisible = false);
   }
 
-  visible(data: DataTable) {
+  visible(data: Product) {
     this.editedData = data;
   }
 
@@ -65,7 +65,10 @@ export class TableComponent implements OnInit {
       length: this.dataTable.length,
     };
     this.subject$.subscribe((val) => (this.selectedData = val));
-    this.subject$.next(this.dataTable.filter((t) => t.completed).length);
+    this.subject$.next(this.dataTable.filter((t: any) => t.isReady).length);
+    this.dataTable = this.dataTable.map((item: any) => {
+      return {...item, completed: true}
+    })
   }
 
   handlePageEvent(pageParams: PageEvent) {
@@ -80,18 +83,18 @@ export class TableComponent implements OnInit {
   }
 
   delete() {
-    this.dataTable = this.dataTable.filter((t) => !t.completed);
+    this.dataTable = this.dataTable.filter((t: any) => !t.isReady);
     this.dataTableChange.emit(this.dataTable);
     this.selectedData = 0;
   }
 
   check() {
-    return this.subject$.next(this.dataTable.filter((t) => t.completed).length);
+    return this.subject$.next(this.dataTable.filter((t: any) => t.isReady).length);
   }
 
   updateAllComplete() {
     this.allComplete =
-      this.dataTable != null && this.dataTable.every((t) => t.completed);
+      this.dataTable != null && this.dataTable.every((t: any) => t.isReady);
   }
 
   someComplete(): boolean {
@@ -99,7 +102,7 @@ export class TableComponent implements OnInit {
       return false;
     }
     return (
-      this.dataTable.filter((t) => t.completed).length > 0 && !this.allComplete
+      this.dataTable.filter((t: any) => t.isReady).length > 0 && !this.allComplete
     );
   }
 
@@ -108,7 +111,7 @@ export class TableComponent implements OnInit {
     if (this.dataTable == null) {
       return;
     }
-    this.dataTable.forEach((t) => (t.completed = completed));
-    this.subject$.next(this.dataTable.filter((t) => t.completed).length);
+    this.dataTable.forEach((t: any) => (t.isReady = completed));
+    this.subject$.next(this.dataTable.filter((t: any) => t.isReady).length);
   }
 }

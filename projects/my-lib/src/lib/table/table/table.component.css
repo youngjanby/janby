@@ -8,6 +8,19 @@
     color: #c06ecc;
 }
 
+.gor {
+    display: flex;
+    flex-direction: row;
+    
+    .name {
+        margin-top: 10px;
+    }
+
+    .name:hover {
+        cursor: pointer;
+    }
+}
+
 .header { 
     padding-right: 16px;
     display: flex;
