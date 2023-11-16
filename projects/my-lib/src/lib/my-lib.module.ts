@@ -15,6 +15,7 @@ import { TableComponent } from './table/table/table.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatChipsModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
   ],
   exports: [
     MyLibComponent,

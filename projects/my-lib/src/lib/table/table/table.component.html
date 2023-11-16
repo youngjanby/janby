@@ -18,14 +18,14 @@
         <div>Артикул</div>
     </div>
         <div class="productContainer" *ngIf="dataTable">
-            <div class="product" *ngFor="let data of currentData">
+            <div class="product" *ngFor="let data of currentData; let i = index">
                 <div class="gor">
                     <mat-checkbox
                     color="accent"
                     [(ngModel)]="data.isReady"
                     (ngModelChange)="check()"
                     ></mat-checkbox>
-                    <div class="name" (click)="openDialog(data)">{{data.nameFrom1C || '-'}}</div>
+                    <div class="name" (click)="openDialog(data, i)">{{data.nameFrom1C || '-'}}</div>
                 </div>
                     <div>{{data.codeFrom1C || '-'}}</div>
             </div>

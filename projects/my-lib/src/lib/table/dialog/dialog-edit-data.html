@@ -25,23 +25,29 @@
   
   <div class="headers">
     <span class="headers">Описание*</span>
-    <textarea placeholder="Опишите товар" cols="30" rows="3" ></textarea> 
+    <textarea formControlName="description" placeholder="Опишите товар" cols="30" rows="3" ></textarea> 
   </div>
   
   <div class="images headers" >
     <span>Изображения</span>
-    <div class="imageContainer">
+    <div class="imageContainer" *ngFor="let data of this.data.product.images, let i = index">
       <div class="img">
         <div class="icon">
           <fa-icon [icon]="image"></fa-icon>
         </div>
-        <span>TestImage.jpg</span>
+        <span>{{data.name}}</span>
       </div>
       <div class="deleteImg">
-        <fa-icon [icon]="deleteIcon"></fa-icon>
+        <fa-icon [icon]="deleteIcon" (click)="deleteImg(data, i)"></fa-icon>
       </div>
     </div>
-    <input placeholder="Вставьте ссылку на Google Drive" type="text" formControlName="images" class="input">
+    <mat-form-field class="example-form-field" appearance="outline">
+      <mat-label>Вставьте ссылку на Google Drive</mat-label>
+      <input matInput type="text" formControlName="images">
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="addImage()">
+          <fa-icon [icon]="linkAccess"></fa-icon>
+        </button>
+    </mat-form-field>
     <div class="help">
       <span>Максимум 5 Изображений</span>
       <span>Размер фото 1000x1000px PNG, JPG, JPEG</span>
@@ -67,8 +73,7 @@
   <div class="volume headers">
     <span>Объем*</span>
     <div class="volumeForm">
-      <input type="text" placeholder="Значение" class="input">
-      <input type="text" placeholder="Артикул" class="input">
+      <input type="text" placeholder="Значение" class="input" formControlName="volume">
       <fa-icon [icon]="deleteIcon"></fa-icon>
     </div>
     <span class="add">+ Добавить Объем</span>
@@ -77,8 +82,8 @@
   <div class="features headers">
     <span>Характеристики*</span>
     <div class="featuresForm">
-      <input type="text" placeholder="Название Характеристики" class="input">
-      <input type="text" placeholder="Значение Характеристики" class="input">
+      <input type="text" placeholder="Название Характеристики" class="input" formControlName="characterName">
+      <input type="text" placeholder="Значение Характеристики" class="input" formControlName="characterValue">
       <fa-icon [icon]="deleteIcon"></fa-icon>
     </div>
     <div class="help">
@@ -95,7 +100,7 @@
                     (removed)="remove(fruit)"
                     [editable]="true"
                     (edited)="edit(fruit, $event)"
-                    [aria-description]="'press enter to edit ' + fruit.name">
+                    [aria-description]="'press enter to edit' + fruit.name">
         {{fruit.name}}
         <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
           <mat-icon>cancel</mat-icon>

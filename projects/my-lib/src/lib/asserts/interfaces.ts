@@ -16,7 +16,6 @@ export interface Product extends ProductCreate {
     price: number
     volume: string
     isRetailAllowed: boolean
-    
     brand: {
       id: string
       name: string

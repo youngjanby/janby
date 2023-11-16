@@ -34,19 +34,21 @@ export class TableComponent implements OnInit {
   allComplete: boolean = false;
   constructor(private dialog: MatDialog) {}
 
-  openDialog(data: any): void {
-    const dialogConfig = new MatDialogConfig();
+  openDialog(data: any, index: number): void {
+    const dialogConfig: MatDialogConfig<{product: Product, index: number}> = new MatDialogConfig();
     dialogConfig.width = '700px';
     dialogConfig.height = '1000px';
     dialogConfig.position = { left: '0px' };
-    dialogConfig.data = data;
+    dialogConfig.data = {product: data, index: index};
     const dialogRef = this.dialog.open(
       DialogWindow,
       dialogConfig
     );
     dialogRef.afterClosed().subscribe((res) => {
-      if(res !== null) {
-        this.dataTable.unshift(res)
+      if(res) {
+        console.log(res.product);
+        
+        return this.dataTable[res.index] = res.product
       }
     })
   }
@@ -67,7 +69,7 @@ export class TableComponent implements OnInit {
     this.subject$.subscribe((val) => (this.selectedData = val));
     this.subject$.next(this.dataTable.filter((t: any) => t.isReady).length);
     this.dataTable = this.dataTable.map((item: any) => {
-      return {...item, completed: true}
+      return {...item, completed: true, description: '', category: '', subCategory: '', characterName: '', characterValue: '', tags: []}
     })
   }
 
