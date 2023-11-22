@@ -1,0 +1,19 @@
+.input {
+    border-radius: 10px;
+    width: 600px;
+    height: 35px;
+    margin-left: 20px;
+    text-indent: 9px;
+    border: 1px solid rgb(41, 41, 41);
+    outline: none;
+}
+
+span {
+    margin-left: 20px;
+    font-size: 14px;
+    color: black;
+}
+
+.headers {
+    margin-top: 10px;
+}

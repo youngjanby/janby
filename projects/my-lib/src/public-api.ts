@@ -9,4 +9,4 @@ export * from './lib/my-lib.component';
 export * from './lib/my-lib.module';
 export * from './lib/nav-tool/nav-tool.component'
 export * from './lib/table/table/table.component'
-export * from './lib/asserts/interfaces'
+

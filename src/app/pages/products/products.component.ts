@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { productData } from 'my-lib';
 
 @Component({
   selector: 'app-products',
@@ -23,11 +22,7 @@ export class ProductsComponent {
           name: 'Kosmoteros Personnel Paris',
           icon: '5ddb4dd7-a8b7-4965-82f4-0fa17e1d38b8.jpg',
         },
-        images: [
-          {name: '1.jpg'},
-          {name: '2.jpg'},
-          {name: '3.jpg'},
-        ],
+        images: [{ name: '1.jpg' }, { name: '2.jpg' }, { name: '3.jpg' }],
       },
       {
         id: '1dfc9408-58dc-43f7-a35d-505aad309ac8',

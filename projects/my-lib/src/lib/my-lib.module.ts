@@ -12,17 +12,24 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogWindow } from './table/dialog/dialog-edit-data';
 import { TableComponent } from './table/table/table.component';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { IconFormComponent } from './icon-form/icon-form.component';
+import { InputFormComponent } from './input-form/input-form.component';
+import { AddInputComponent } from './add-input/add-input.component';
+
 
 @NgModule({
   declarations: [
     MyLibComponent,
     NavToolComponent,
     TableComponent,
-    DialogWindow
+    DialogWindow,
+    IconFormComponent,
+    InputFormComponent,
+    AddInputComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +50,7 @@ import { MatInputModule } from '@angular/material/input';
   exports: [
     MyLibComponent,
     NavToolComponent,
-    TableComponent
+    TableComponent,
   ]
 })
 export class MyLibModule { }

@@ -1,120 +1,130 @@
 <div mat-dialog-title class="header">
-    <button class="delete button" (click)="delete()">Сохранить</button>
-    <button class="save button" (click)="save()" [disabled]="this.createForm.invalid">Сохранить и закрыть</button>
+  <button class="delete button" (click)="delete()">Сохранить</button>
+  <button
+    class="save button"
+    (click)="save()"
+    [disabled]="this.createForm.invalid"
+  >
+    Сохранить и закрыть
+  </button>
 </div>
 <div mat-dialog-content [formGroup]="createForm" class="containerForm">
-  <div>
-    <span class="headers">Название 1С</span>
-    <input type="text" formControlName="nameFrom1C" class="input">
-  </div>
+  <my-lib-input-form
+    [control]="createForm.controls['nameFrom1C']"
+    [header]="'Название 1С'"
+  ></my-lib-input-form>
+
+  <my-lib-input-form
+    [control]="createForm.controls['name']"
+    [header]="'Название*'"
+  ></my-lib-input-form>
+
+  <my-lib-input-form
+    [control]="createForm.controls['brand']"
+    [header]="'Бренд*'"
+  ></my-lib-input-form>
+
+  <my-lib-input-form
+    [control]="createForm.controls['Article']"
+    [header]="'Артикул'"
+  ></my-lib-input-form>
+
+  <my-lib-input-form
+    [control]="createForm.controls['description']"
+    [placeholder]="'Опишите товар'"
+    [header]="'Описание*'"
+    [isArea]="true"
+  ></my-lib-input-form>
+
+  <my-lib-icon-form [data]="data" [dataForm]="createForm.controls['images']"></my-lib-icon-form>
+
+  <my-lib-input-form
+    [control]="createForm.controls['price']"
+    [placeholder]="'Введите цену'"
+    [header]="'Цена'"
+  ></my-lib-input-form>
 
   <div>
-    <span class="headers">Название*</span>
-    <input type="text" formControlName="name" class="input">
+    <span>Категория*</span>
   </div>
-  
-  <div>
-    <span class="headers">Бренд*</span>
-    <input type="text" formControlName="brend" class="input">
-  </div>
+  <my-lib-input-form
+    [control]="createForm.controls['categories'].controls['key']"
+    [placeholder]="'Введите Категорию'"
+  ></my-lib-input-form>
 
-  <div>
-    <span class="headers">Артикул</span>
-    <input type="text" formControlName="Article" class="input" >
-  </div>
-  
-  <div class="headers">
-    <span class="headers">Описание*</span>
-    <textarea formControlName="description" placeholder="Опишите товар" cols="30" rows="3" ></textarea> 
-  </div>
-  
-  <div class="images headers" >
-    <span>Изображения</span>
-    <div class="imageContainer" *ngFor="let data of this.data.product.images, let i = index">
-      <div class="img">
-        <div class="icon">
-          <fa-icon [icon]="image"></fa-icon>
-        </div>
-        <span>{{data.name}}</span>
-      </div>
-      <div class="deleteImg">
-        <fa-icon [icon]="deleteIcon" (click)="deleteImg(data, i)"></fa-icon>
-      </div>
-    </div>
-    <mat-form-field class="example-form-field" appearance="outline">
-      <mat-label>Вставьте ссылку на Google Drive</mat-label>
-      <input matInput type="text" formControlName="images">
-        <button matSuffix mat-icon-button aria-label="Clear" (click)="addImage()">
-          <fa-icon [icon]="linkAccess"></fa-icon>
-        </button>
-    </mat-form-field>
-    <div class="help">
-      <span>Максимум 5 Изображений</span>
-      <span>Размер фото 1000x1000px PNG, JPG, JPEG</span>
-    </div>
-  </div>
-  
-  <div class="headers">
-    <span class="price" >Цена</span>
-    <input type="text" formControlName="price" placeholder="Введите цену" class="input">
-  </div>
+  <my-lib-input-form
+    [control]="createForm.controls['categories'].controls['value']"
+    [placeholder]="'Введите Подкатегорию'"
+  ></my-lib-input-form>
 
-  <div class="category headers">
-    <div>
-      <span>Категория*</span>
-      <input type="text" formControlName="category" class="input">
-    </div>
-    <div>
-      <span>Подкатегория*</span>
-      <input type="text" formControlName="subcategory" class="input">
-    </div>  
-  </div>
+  <my-lib-add-input
+    [header]="'Объем'"
+    [property]="volumes"
+    [type]="TypeEnum.Pairs"
+  ></my-lib-add-input>
 
-  <div class="volume headers">
-    <span>Объем*</span>
-    <div class="volumeForm">
-      <input type="text" placeholder="Значение" class="input" formControlName="volume">
-      <fa-icon [icon]="deleteIcon"></fa-icon>
-    </div>
-    <span class="add">+ Добавить Объем</span>
-  </div>
+  <my-lib-add-input
+  [header]="'Характеристики'"
+  [property]="characters"
+  [type]="TypeEnum.List"
+  ></my-lib-add-input>
 
   <div class="features headers">
     <span>Характеристики*</span>
-    <div class="featuresForm">
-      <input type="text" placeholder="Название Характеристики" class="input" formControlName="characterName">
-      <input type="text" placeholder="Значение Характеристики" class="input" formControlName="characterValue">
-      <fa-icon [icon]="deleteIcon"></fa-icon>
+    <div
+      class="featuresForm"
+      *ngFor="let character of characters.controls; let i = index"
+    >
+      <input
+        type="text"
+        placeholder="Название Характеристики"
+        class="input"
+        [formControl]="character.controls['key']"
+      />
+      <input
+        type="text"
+        placeholder="Значение Характеристики"
+        class="input"
+        [formControl]="character.controls['value']"
+      />
+      <fa-icon
+        (click)="deleteItem(characters.controls, i)"
+        [icon]="deleteIcon"
+      ></fa-icon>
     </div>
     <div class="help">
       <span>Максимум 15 Характеристик</span>
     </div>
-    <span class="add">+ Добавить Характеристику</span>
+    <span class="add" (click)="addCharacter()">+ Добавить Характеристику</span>
   </div>
 
-<div class="tags">
-<span class="headers">Теги товаров</span>
-  <mat-form-field class="example-chip-list" appearance="outline">
-    <mat-chip-grid #chipGrid aria-label="Введите тег">
-      <mat-chip-row *ngFor="let fruit of fruits"
-                    (removed)="remove(fruit)"
-                    [editable]="true"
-                    (edited)="edit(fruit, $event)"
-                    [aria-description]="'press enter to edit' + fruit.name">
-        {{fruit.name}}
-        <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip-row>
-      <input placeholder="Введите тег"
-             [matChipInputFor]="chipGrid"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="addOnBlur"
-             (matChipInputTokenEnd)="add($event)"/>
-    </mat-chip-grid>
-  </mat-form-field>
-  <div class="help">
-    <span>Максимум 120 тегов</span>
+  <div class="tags">
+    <span class="headers">Теги товаров</span>
+    <mat-form-field class="example-chip-list" appearance="outline">
+      <mat-chip-grid #chipGrid aria-label="Введите тег">
+        <mat-chip-row
+          *ngFor="let fruit of fruits"
+          (removed)="remove(fruit)"
+          [editable]="true"
+          (edited)="edit(fruit, $event)"
+          [aria-description]="'press enter to edit' + fruit.name"
+        >
+          {{fruit.name}}
+          <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input
+          placeholder="Введите тег"
+          [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-grid>
+    </mat-form-field>
+    <div class="help">
+      <span>Максимум 120 тегов</span>
+    </div>
   </div>
-</div>
 </div>

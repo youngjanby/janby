@@ -1,0 +1,16 @@
+<div>
+  <span class="headers">{{ header }}</span>
+    <input
+    *ngIf="!isArea"
+      placeholder="{{placeholder}}"
+      [formControl]="control"
+      class="input"
+    />
+    <textarea
+    *ngIf="isArea"
+    [formControl]="control"
+    placeholder="{{placeholder}}"
+    cols="30"
+    rows="3"
+  ></textarea>
+</div>
