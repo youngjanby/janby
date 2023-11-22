@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyLibModule } from 'my-lib';
 import { NavComponent } from './nav/nav.component';
 import { PagesModule } from './pages/pages.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -12,6 +11,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptor } from './assets/interceptor';
+import { MyLibModule } from 'my-lib';
+
 
 
 
@@ -35,11 +36,11 @@ import { MyInterceptor } from './assets/interceptor';
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MyLibModule,
-        PagesModule,
         FontAwesomeModule,
         MatSlideToggleModule,
-        RouterModule
+        RouterModule,
+        MyLibModule,
+        PagesModule
     ]
 })
 export class AppModule { }

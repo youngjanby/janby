@@ -1,0 +1,101 @@
+.container {
+    margin-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.bg {
+    color: #c06ecc;
+}
+
+.gor {
+    display: flex;
+    flex-direction: row;
+    
+    .name {
+        margin-top: 10px;
+    }
+
+    .name:hover {
+        cursor: pointer;
+    }
+}
+
+.header { 
+    padding-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F8F8FA;
+    border-bottom: 1px solid #EBECEF;
+    border-top: 1px solid #EBECEF;
+}
+
+.product {
+    padding-right: 16px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-bottom: 1px solid #EBECEF;
+}
+
+.delete {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+}
+
+.delete div {
+    margin-top: 20px;
+}
+
+.deleteButton:hover {
+    cursor: pointer;
+}
+
+.center {
+    margin-top: 30px;
+    justify-content: center;
+    display: flex;
+}
+
+.productContainer {
+    height: 410px;
+    overflow: auto;
+}
+
+mat-paginator {
+    padding-top: 40px;
+}
+
+.buttonCon {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #c06ecc;
+    width: 850px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: white;
+    border: 0;
+    transition: all 0.15s ease-in-out
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #ae63ba;
+}
+
+.form:hover{
+    cursor: pointer;
+}

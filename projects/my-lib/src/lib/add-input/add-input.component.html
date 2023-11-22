@@ -1,0 +1,36 @@
+<div class="features headers">
+  <span>{{header}}*</span>
+  <div *ngFor="let item of property.controls; let i = index">
+    <div *ngIf="type === TypeEnum.List" class="featuresForm">
+      <input
+        type="text"
+        placeholder="Введите название {{header}}"
+        class="input"
+        [formControl]="item.controls['key']"
+      />
+      <input
+        type="text"
+        placeholder="Введите значение {{header}}"
+        class="input"
+        [formControl]="item.controls['value']"
+      />
+      <fa-icon
+      (click)="deleteItem(property.controls, i)"
+      [icon]="deleteIcon"
+    ></fa-icon>
+    </div>
+    <div *ngIf="type === TypeEnum.Pairs" class="volumeForm">
+      <input 
+      type="text"
+      class="input"
+      [formControl]="item"
+      placeholder="Введите {{header}}"
+      >
+      <fa-icon
+        (click)="deleteItem(property.controls, i)"
+        [icon]="deleteIcon"
+      ></fa-icon>
+    </div>
+  </div>
+  <span class="add" (click)="addItem(type)">+ Добавить {{ header }}</span>
+</div>

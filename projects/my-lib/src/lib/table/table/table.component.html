@@ -1,0 +1,43 @@
+<div class="containerProducts">
+    <mat-paginator 
+    [length]="dataTable.length" 
+    [pageSizeOptions]="[5, 10, 15]" 
+    aria-label="Select page"
+    (page)="handlePageEvent($event)">
+    </mat-paginator>
+</div>
+
+<div class="containerTable">
+<div class="container">
+    <div class="header">
+        <mat-checkbox
+        [checked]="allComplete"
+        [indeterminate]="someComplete()"
+        (change)="setAll($event.checked)"
+        >Название</mat-checkbox>
+        <div>Артикул</div>
+    </div>
+        <div class="productContainer" *ngIf="dataTable">
+            <div class="product" *ngFor="let data of currentData; let i = index">
+                <div class="gor">
+                    <mat-checkbox
+                    color="accent"
+                    [(ngModel)]="data.isReady"
+                    (ngModelChange)="check()"
+                    ></mat-checkbox>
+                    <div class="name" (click)="openDialog(data, i)">{{data.nameFrom1C || '-'}}</div>
+                </div>
+                    <div>{{data.codeFrom1C || '-'}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <div class="delete" *ngIf="selectedData">
+            <div>Количество выбранных позиций: {{selectedData}}</div>
+            <div class="deleteButton" (click)="delete()">
+                <fa-icon [icon]="faTrash"></fa-icon>
+                Удалить
+            </div>
+        </div>
+    </div>
+</div>

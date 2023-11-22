@@ -1,0 +1,31 @@
+<div class="images headers">
+  <span>Изображения</span>
+  <div
+    class="imageContainer"
+    *ngFor="let img of data.product.images; let i = index"
+  >
+    <div class="img">
+      <div class="icon">
+        <fa-icon [icon]="image"></fa-icon>
+      </div>
+      <span>{{ img.name }}</span>
+    </div>
+    <div class="deleteImg">
+      <fa-icon
+        [icon]="deleteIcon"
+        (click)="deleteItem(data.product.images, i)"
+      ></fa-icon>
+    </div>
+  </div>
+  <mat-form-field class="example-form-field" appearance="outline">
+    <mat-label>Вставьте ссылку на Google Drive</mat-label>
+    <input matInput type="text" [formControl]="dataForm" />
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="addImage()">
+      <fa-icon [icon]="linkAccess"></fa-icon>
+    </button>
+  </mat-form-field>
+  <div class="help">
+    <span>Максимум 5 Изображений</span>
+    <span>Размер фото 1000x1000px PNG, JPG, JPEG</span>
+  </div>
+</div>

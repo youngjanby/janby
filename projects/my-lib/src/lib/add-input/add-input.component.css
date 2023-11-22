@@ -1,0 +1,47 @@
+.volumeForm, .featuresForm {
+    display: flex;
+    flex-direction: row;
+}
+
+.headers {
+    margin-top: 10px;
+}
+
+.help {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 10px;
+        margin-top: 0px;
+    }
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    border-radius: 10px;
+    width: 600px;
+    height: 35px;
+    margin-left: 20px;
+    text-indent: 9px;
+    border: 1px solid rgb(41, 41, 41);
+    outline: none;
+}
+
+span {
+    margin-left: 20px;
+    font-size: 14px;
+    color: black;
+}
+
+.add {
+    color: #be2cd4;
+}
+
+.add:hover {
+    cursor: pointer;
+}

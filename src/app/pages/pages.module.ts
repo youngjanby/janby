@@ -11,7 +11,6 @@ import { BannersComponent } from './banners/banners.component';
 import { SeminarsComponent } from './seminars/seminars.component';
 import { PromocodesComponent } from './promocodes/promocodes.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { MyLibModule } from 'my-lib';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RouterModule } from '@angular/router';
@@ -21,6 +20,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MyLibModule } from 'my-lib';
+
 
 
 
@@ -46,7 +47,6 @@ import { HttpClientModule } from '@angular/common/http';
     imports: [
         CommonModule,
         MatPaginatorModule,
-        MyLibModule,
         RouterModule,
         MatFormFieldModule,
         MatInputModule,
@@ -54,7 +54,8 @@ import { HttpClientModule } from '@angular/common/http';
         MatButtonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        MyLibModule
     ]
 })
 export class PagesModule { }
