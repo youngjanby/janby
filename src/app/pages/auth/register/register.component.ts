@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent {
 hide: boolean = true;
 
@@ -32,7 +33,7 @@ constructor(private authService: AuthService) {}
 signUp() {
   let userName = this.formRegister.controls['userName'].value
   let password = this.formRegister.controls['password'].value
-  
+
   this.authService.signUp(userName, password).subscribe(({accessToken, refreshToken, id}) => {
     this.authService.saveTokensOnLocalStorage(
       accessToken,
