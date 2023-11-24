@@ -29,6 +29,12 @@ span {
     color: black;
 }
 
+
+.categoriesContainer {
+    display: flex;
+    flex-direction: row;
+}
+
 .containerForm {
     width: 100%;
     height: 100%;

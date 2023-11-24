@@ -1,16 +1,17 @@
-<div>
+<div class="container">
   <span class="headers">{{ header }}</span>
-    <input
+  <input
     *ngIf="!isArea"
-      placeholder="{{placeholder}}"
-      [formControl]="control"
-      class="input"
-    />
-    <textarea
-    *ngIf="isArea"
-    [formControl]="control"
+    [ngClass]="{small: inputClass}"
     placeholder="{{placeholder}}"
-    cols="30"
-    rows="3"
-  ></textarea>
+    [formControl]="control"
+    class="input"
+  />
+  <textarea
+  *ngIf="isArea"
+  [formControl]="control"
+  placeholder="{{placeholder}}"
+  cols="30"
+  rows="3"
+></textarea>
 </div>

@@ -61,7 +61,7 @@ export class TableComponent implements OnInit {
     this.subject$.subscribe((val) => (this.selectedData = val));
     this.subject$.next(this.dataTable.filter((t: any) => t.isReady).length);
     this.dataTable = this.dataTable.map((item: any) => {
-      return {...item, completed: true, description: '',volumes: [{volume: item.volume}], categories: [{name: '', value: ''}], characters: [{key: '1', value: '2'}], tags: []}
+      return {...item, completed: true, description: '',volumes: [{volume: item.volume}], categories: {name: '', value: ''}, characters: [{key: '1', value: '2'}], tags: []}
     })
   }
 

@@ -15,7 +15,7 @@ export enum TypeEnum {
   templateUrl: './add-input.component.html',
   styleUrl: './add-input.component.css',
 })
-export class AddInputComponent  {
+export class AddInputComponent {
   @Input() type!: number | string
   @Input() added: string = '';
   @Input() property: any;
@@ -37,7 +37,9 @@ export class AddInputComponent  {
   addItem(type: string | number) {
     if(type === TypeEnum.Pairs) {
       this.property.push(
-          new FormControl('')
+          new FormGroup({
+            volume: new FormControl('')
+          })
       ) 
     } else {
       this.property.push(
@@ -46,5 +48,10 @@ export class AddInputComponent  {
           value: new FormControl<string>(''),
         }))
     }
+    console.log(this.propertyValues);
+    
+  }
+  get propertyValues() {
+    return this.property.controls as FormArray
   }
 }

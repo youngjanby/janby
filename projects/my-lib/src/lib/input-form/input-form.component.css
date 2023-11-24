@@ -17,3 +17,18 @@ span {
 .headers {
     margin-top: 10px;
 }
+
+.container { 
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    margin-left: 20px;
+    resize: none;
+    border-radius: 10px;
+}
+
+.small {
+    width: 285px;
+}

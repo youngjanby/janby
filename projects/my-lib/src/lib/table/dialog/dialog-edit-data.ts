@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { faImage, faLink, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -7,8 +7,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { inject } from '@angular/core';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Fruit, Product, ProductData, ProductForm, dataPropsInDialog } from '../../asserts/interfaces';
+import { Fruit, Image, Product, ProductData, ProductForm, dataPropsInDialog } from '../../asserts/interfaces';
 import { TypeEnum } from '../../add-input/add-input.component';
+import { group } from '@angular/animations';
 
 
 @Component({
@@ -50,13 +51,12 @@ export class DialogWindow implements OnInit {
       Article: new FormControl(this.data.product.codeFrom1C),
       //@ts-expect-error
       description: new FormControl(this.data.product.description),
-      images: new FormArray<FormControl>([]),
       //@ts-expect-error
       price: new FormControl(this.data.product.price),
       //@ts-expect-error
       categories: new FormGroup({
-        key: new FormControl(this.data.product.categories.categoryName),
-        value: new FormControl(this.data.product.categories.categoryValue),
+        key: new FormControl(this.data.product.categories.name),
+        value: new FormControl(this.data.product.categories.value),
       }),
       //@ts-expect-error
       volumes: new FormArray([]),
@@ -83,67 +83,26 @@ export class DialogWindow implements OnInit {
     });
 
     this.data.product.volumes.forEach((v) => {
-    if(v.volume){     
-    return this.volumes.push(
-      //@ts-expect-error
-      new FormControl(v.volume),
-    );
-  }
-});
-  }
-
-  add(event: MatChipInputEvent) {
-    const value = (event.value || '').trim();
-
-    if (value) {
-      this.fruits.push({ name: value });
-    }
-    event.chipInput!.clear();
+      this.volumes.push(
+        //@ts-expect-error
+        new FormGroup({
+          volume: new FormControl(v.volume, Validators.required), // Предполагаем, что volume может быть не определенным
+        })
+      );
+      console.log(this.volumes);
+      
+    });
   }
 
-  remove(fruit: Fruit) {
-    const index = this.fruits.indexOf(fruit);
-
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-      this.announcer.announce(`Removed ${fruit}`);
-    }
-  }
-
-  edit(fruit: Fruit, event: MatChipEditedEvent) {
-    const value = event.value.trim();
-
-    if (!value) {
-      this.remove(fruit);
-      return;
-    }
-
-    const index = this.fruits.indexOf(fruit);
-    if (index >= 0) {
-      this.fruits[index].name = value;
-    }
-  }
   delete() {
+    console.log(this.createForm);
+    
     this.dialogRef.close(this.data);
   }
-  deleteImg(index: number) {
-    let currentIndex: number = index--;
-    this.data.product.images.splice(currentIndex, 1);
-  }
 
-  deleteItem(data: any, index: any) {
-    if (data.length === 1) return;
-    let currentIndex = index--;
-    data.splice(currentIndex, 1);
-  }
-
-  addCharacter() {
-    this.characters.push(
-      new FormGroup({
-        key: new FormControl<string>('', [Validators.required]),
-        value: new FormControl<string>('', [Validators.required]),
-      })
-    );
+  saveNewImages(dataImg: Image[]) {
+    console.log(this.data.product.images)
+    return this.data.product.images = dataImg
   }
 
   save() {
@@ -164,8 +123,10 @@ export class DialogWindow implements OnInit {
       isRetailAllowed: true,
       completed: true,
       description: getFormValue('description'),
-      categories: [this.data.product.categories],
-      characters: [this.data.product.characters],
+      categories: {name: this.createForm.controls['categories'].controls['key'].value, value: this.createForm.controls['categories'].controls['value'].value},
+      characters: this.characters.controls.map((group: FormGroup) => {
+        return { key: group.get('key')?.value, value: group.get('value')?.value }
+      }),
       tags: [...this.fruits],
       brand: {
         id: this.data.product.brand.id,
@@ -173,18 +134,23 @@ export class DialogWindow implements OnInit {
         icon: this.data.product.brand.icon,
       },
       images: [...this.data.product.images],
+      volumes: this.volumes.controls.map((group: FormGroup) => {
+        return { volume: group.get('volume')?.value };
+      }),
     };
     this.dialogRef.close({
       product: productData,
       index: this.productIndex,
     });
+    console.log(productData.categories);
+    
   }
 
   get characters(): FormArray<FormGroup<{ key: FormControl; value: FormControl }>> {
     return this.createForm.get('characters') as FormArray;
   }
 
-  get volumes(): FormArray<FormControl<string>> {
+  get volumes(): FormArray<FormGroup<{volume: FormControl<string>}>> {
     return this.createForm.get('volumes') as FormArray;
   }
 }

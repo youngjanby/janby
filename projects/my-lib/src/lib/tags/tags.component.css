@@ -1,0 +1,25 @@
+.headers {
+    margin-top: 10px;
+}
+
+.example-chip-list {
+    width: 600px;
+    margin-left: 20px;
+
+  }
+
+  .help {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 10px;
+        margin-top: 0px;
+    }
+}
+
+span {
+    margin-left: 20px;
+    font-size: 14px;
+    color: black;
+}
