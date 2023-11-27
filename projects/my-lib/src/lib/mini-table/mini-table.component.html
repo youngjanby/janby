@@ -1,0 +1,47 @@
+<div class="globalContainer">
+<div class="container">
+<div class="form" [formGroup]="addForm">
+    <input placeholder="Введите название категории" formControlName="nameCategory">
+    <button>Добавить категорию</button>
+  </div>
+
+  <div class="tableContainer">
+    <div class="header">
+      <span>Название категории</span>
+    </div>
+
+    <div class="content">
+      <div class="category" *ngFor="let data of dataCategory; let i = index">
+        <div class="name">{{data.name}}</div>
+        <div class="icons">
+          <fa-icon [icon]="trashIcon"></fa-icon>
+          <fa-icon [icon]="editIcon"></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+    <div class="form" [formGroup]="addForm">
+      <input placeholder="Введите название подкатегории" formControlName="nameCategory">
+      <button>Добавить подкатегорию</button>
+    </div>
+
+    <div class="tableContainer">
+      <div class="header">
+        <span>Название подкатегории</span>
+      </div>
+
+      <div class="content">
+        <div class="category" *ngFor="let data of dataSubCategory; let i = index">
+          <div class="name">{{data.name}}</div>
+          <div class="icons">
+            <fa-icon [icon]="trashIcon"></fa-icon>
+            <fa-icon [icon]="editIcon"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

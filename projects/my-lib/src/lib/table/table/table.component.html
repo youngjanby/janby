@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="table.component.css">
 <div class="containerProducts">
     <mat-paginator
     [length]="dataTable.length"
@@ -8,6 +9,13 @@
 </div>
 
 <div class="containerTable">
+    <div class="  delete" *ngIf="selectedData">
+      <div>Количество выбранных позиций: {{selectedData}}</div>
+      <div class="deleteButton" (click)="delete()">
+        <fa-icon [icon]="faTrash"></fa-icon>
+        Удалить
+      </div>
+    </div>
 <div class="container">
     <div class="header">
         <mat-checkbox
@@ -16,6 +24,7 @@
         >Название</mat-checkbox>
         <div>Артикул</div>
     </div>
+
         <div class="productContainer" *ngIf="dataTable">
             <div class="product" *ngFor="let data of currentData; let i = index">
                 <div class="gor">
@@ -30,13 +39,4 @@
             </div>
         </div>
     </div>
-  <div class="center">
-    <div class="  delete" *ngIf="selectedData">
-      <div>Количество выбранных позиций: {{selectedData}}</div>
-      <div class="deleteButton" (click)="delete()">
-        <fa-icon [icon]="faTrash"></fa-icon>
-        Удалить
-      </div>
-    </div>
-  </div>
 </div>

@@ -20,6 +20,7 @@ import { IconFormComponent } from './icon-form/icon-form.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { AddInputComponent } from './add-input/add-input.component';
 import TagsComponent from './tags/tags.component';
+import {MiniTableComponent} from "./mini-table/mini-table.component";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import TagsComponent from './tags/tags.component';
     IconFormComponent,
     InputFormComponent,
     AddInputComponent,
-    TagsComponent
+    TagsComponent,
+    MiniTableComponent
   ],
   imports: [
     CommonModule,
@@ -53,6 +55,7 @@ import TagsComponent from './tags/tags.component';
     MyLibComponent,
     NavToolComponent,
     TableComponent,
+    MiniTableComponent
   ]
 })
 export class MyLibModule { }
