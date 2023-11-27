@@ -48,9 +48,6 @@ export class TableComponent implements OnInit {
       }
     })
   }
-  close() {
-    return (this.isModalDialogVisible = false);
-  }
 
   ngOnInit(): void {
     this.dataPagination = {
@@ -86,26 +83,16 @@ export class TableComponent implements OnInit {
     return this.subject$.next(this.dataTable.filter((t: any) => t.isReady).length);
   }
 
-  updateAllComplete() {
-    this.allComplete =
-      this.dataTable != null && this.dataTable.every((t: any) => t.isReady);
-  }
-
-  someComplete() {
-    if (this.dataTable == null) {
-      return false;
-    }
-    return (
-      this.dataTable.filter((t: any) => t.isReady).length > 0 && !this.allComplete
-    );
+  get allCompleteCheck() {
+    return this.currentData.filter((t: any) => t.isReady).length === this.currentData.length
   }
 
   setAll(completed: boolean) {
     this.allComplete = completed;
-    if (this.dataTable == null) {
+    if (this.currentData == null) {
       return;
     }
-    this.dataTable.forEach((t: any) => (t.isReady = completed));
+    this.currentData.forEach((t: any) => (t.isReady = completed));
     this.subject$.next(this.dataTable.filter((t: any) => t.isReady).length);
   }
 }

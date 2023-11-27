@@ -13,14 +13,14 @@ export enum TypeEnum {
 @Component({
   selector: 'my-lib-add-input',
   templateUrl: './add-input.component.html',
-  styleUrl: './add-input.component.css',
+  styleUrl: './add-input.component.scss',
 })
 export class AddInputComponent {
   @Input() type!: number | string
   @Input() added: string = '';
   @Input() property: any;
   @Input() header: string = ''
-  @Input() control!: 
+  @Input() control!:
       FormArray<FormControl<string>>
     | FormArray<FormGroup<{ key: FormControl<string>; value: FormControl<string> }>>;
 
@@ -40,7 +40,7 @@ export class AddInputComponent {
           new FormGroup({
             volume: new FormControl('')
           })
-      ) 
+      )
     } else {
       this.property.push(
         new FormGroup({
@@ -49,7 +49,7 @@ export class AddInputComponent {
         }))
     }
     console.log(this.propertyValues);
-    
+
   }
   get propertyValues() {
     return this.property.controls as FormArray

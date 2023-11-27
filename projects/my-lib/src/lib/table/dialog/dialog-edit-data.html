@@ -1,4 +1,5 @@
-<div mat-dialog-title class="header">
+<div class="containerFormGlobal">
+<div mat-dialog-title class="actions">
   <button class="delete button" (click)="delete()">Сохранить</button>
   <button
     class="save button"
@@ -53,7 +54,7 @@
       [placeholder]="'Введите Категорию'"
       [isSmallInput]="true"
     ></my-lib-input-form>
-  
+
     <my-lib-input-form
       [control]="createForm.controls['categories'].controls['value']"
       [placeholder]="'Введите Подкатегорию'"
@@ -76,4 +77,5 @@
   <my-lib-tags
   [fruits]="this.data.product.tags"
   ></my-lib-tags>
+</div>
 </div>

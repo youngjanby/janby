@@ -9,14 +9,14 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'my-lib-icon-form',
   templateUrl: './icon-form.component.html',
-  styleUrl: './icon-form.component.css'
+  styleUrl: './icon-form.component.scss'
 })
 export class IconFormComponent {
   image: IconProp = faImage
   deleteIcon: IconProp = faTrash
   linkAccess: IconProp = faLink
   link = new FormControl('', [Validators.required])
-  
+
 
   @Input() data: any
   @Output() imageChanges = new EventEmitter()

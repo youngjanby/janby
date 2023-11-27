@@ -1,7 +1,7 @@
 <div class="containerProducts">
-    <mat-paginator 
-    [length]="dataTable.length" 
-    [pageSizeOptions]="[5, 10, 15]" 
+    <mat-paginator
+    [length]="dataTable.length"
+    [pageSizeOptions]="[5, 10, 15]"
     aria-label="Select page"
     (page)="handlePageEvent($event)">
     </mat-paginator>
@@ -11,8 +11,7 @@
 <div class="container">
     <div class="header">
         <mat-checkbox
-        [checked]="allComplete"
-        [indeterminate]="someComplete()"
+        [checked]="allCompleteCheck"
         (change)="setAll($event.checked)"
         >Название</mat-checkbox>
         <div>Артикул</div>
@@ -31,13 +30,13 @@
             </div>
         </div>
     </div>
-    <div class="center">
-        <div class="delete" *ngIf="selectedData">
-            <div>Количество выбранных позиций: {{selectedData}}</div>
-            <div class="deleteButton" (click)="delete()">
-                <fa-icon [icon]="faTrash"></fa-icon>
-                Удалить
-            </div>
-        </div>
+  <div class="center">
+    <div class="  delete" *ngIf="selectedData">
+      <div>Количество выбранных позиций: {{selectedData}}</div>
+      <div class="deleteButton" (click)="delete()">
+        <fa-icon [icon]="faTrash"></fa-icon>
+        Удалить
+      </div>
     </div>
+  </div>
 </div>
