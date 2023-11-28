@@ -105,12 +105,6 @@ export class CategoriesComponent {
       catalog_product: { id: '67045c46-4528-49fb-921e-4b1c646a7d75' },
     },
     {
-      id: 'f33be44e-fcab-48f2-9871-dc3b01e6873f',
-      name: 'Филлеры',
-      position: 0,
-      catalog_product: { id: 'e8d9c2d7-d136-429d-9cea-b61a48085b8f' },
-    },
-    {
       id: '72d4d04c-8b85-4bce-8252-949a22501fa8',
       name: 'Прямые',
       position: 0,

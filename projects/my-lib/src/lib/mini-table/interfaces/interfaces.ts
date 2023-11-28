@@ -2,11 +2,14 @@
 export interface Catalog {
   id: string
   name: string
-  position: number
+  position?: number
 }
 
 export interface SubCatalog {
   id: string
   name: string
-  position: number
+  position?: number
+  catalog_product: {
+    id: string
+  }
 }

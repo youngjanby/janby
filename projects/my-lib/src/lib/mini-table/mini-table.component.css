@@ -60,14 +60,31 @@ button:hover {
   flex-direction: row;
 }
 
+.categoryNull {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 fa-icon {
   margin-right: 10px;
 }
 
+.nullSub {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   padding-top: 20px;
-  width: 40%;
+  width: 450px;
+}
+
+.name:hover {
+  cursor: pointer;
 }
 
 .tableContainer {
@@ -77,6 +94,6 @@ fa-icon {
 .globalContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /*justify-content: space-around;*/
 }
 

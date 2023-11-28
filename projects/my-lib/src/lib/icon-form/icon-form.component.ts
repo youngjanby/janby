@@ -25,7 +25,6 @@ export class IconFormComponent {
     if(data.length === 1) return
       let currentIndex = index--
       data.splice(currentIndex, 1)
-
   }
 
   addImage() {

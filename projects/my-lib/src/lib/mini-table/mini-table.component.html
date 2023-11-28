@@ -1,44 +1,53 @@
 <div class="globalContainer">
 <div class="container">
-<div class="form" [formGroup]="addForm">
+<div class="form" [formGroup]="formCategories">
     <input placeholder="Введите название категории" formControlName="nameCategory">
-    <button>Добавить категорию</button>
+    <button (click)="addCategory()">Добавить категорию</button>
   </div>
 
   <div class="tableContainer">
     <div class="header">
-      <span>Название категории</span>
+      <span (click)="resetCategory()" class="name">Название категории</span>
     </div>
 
     <div class="content">
       <div class="category" *ngFor="let data of dataCategory; let i = index">
-        <div class="name">{{data.name}}</div>
+        <div class="name" (click)="selectData(data)">{{data.name}}</div>
         <div class="icons">
-          <fa-icon [icon]="trashIcon"></fa-icon>
-          <fa-icon [icon]="editIcon"></fa-icon>
+          <fa-icon [icon]="trashIcon" (click)="deleteCategory(data.id)"></fa-icon>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-  <div class="container">
-    <div class="form" [formGroup]="addForm">
-      <input placeholder="Введите название подкатегории" formControlName="nameCategory">
-      <button>Добавить подкатегорию</button>
-    </div>
 
-    <div class="tableContainer">
-      <div class="header">
-        <span>Название подкатегории</span>
+  <div class="categoryNull" *ngIf="selectedData.length === 0">
+    <span>Выберите категорию.</span>
+  </div>
+
+  <div *ngIf="selectedData.length === 1">
+    <div class="container">
+      <div class="form" [formGroup]="formCategories">
+        <input placeholder="Введите название подкатегории" formControlName="nameSubCategory">
+        <button (click)="addSubCategory()">Добавить подкатегорию</button>
       </div>
 
-      <div class="content">
-        <div class="category" *ngFor="let data of dataSubCategory; let i = index">
-          <div class="name">{{data.name}}</div>
-          <div class="icons">
-            <fa-icon [icon]="trashIcon"></fa-icon>
-            <fa-icon [icon]="editIcon"></fa-icon>
+      <div class="nullSub" *ngIf="currentSubCategories.length <= 0">
+        <span>Подкатегорий у этой категории нет.</span>
+      </div>
+
+      <div class="tableContainer" *ngIf="currentSubCategories.length > 0">
+        <div class="header">
+          <span>Название подкатегории</span>
+        </div>
+
+        <div class="content">
+          <div class="category" *ngFor="let data of currentSubCategories; let i = index">
+            <div class="name">{{data.name}}</div>
+            <div class="icons">
+              <fa-icon [icon]="trashIcon" (click)="deleteSubCategory(data.id)"></fa-icon>
+            </div>
           </div>
         </div>
       </div>
