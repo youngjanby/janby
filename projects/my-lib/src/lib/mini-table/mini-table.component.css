@@ -9,6 +9,14 @@
   width: 100%;
 }
 
+.active {
+  background-color: #F8F8FA;
+}
+
+.hovered:hover {
+  cursor: pointer;
+}
+
 input {
   border-radius: 10px;
   height: 35px;
@@ -16,6 +24,24 @@ input {
   border: 1px solid rgb(41, 41, 41);
   outline: none;
 }
+
+.trash {
+  background-color: #c06ecc;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 100px;
+  border: 0;
+  color: white;
+  transition: all 0.15s ease-in-out;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+fa-icon {
+  margin-left: 50%;
+  margin-top: 25%;
+}
+
 
 button {
   background-color: #c06ecc;
@@ -71,16 +97,31 @@ fa-icon {
   margin-right: 10px;
 }
 
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .nullSub {
   display: flex;
   justify-content: center;
 }
 
+.trash:hover {
+  background-color: #7e4886;
+}
+
+
+button:disabled {
+  background-color: #7e4886;
+}
+
 .container {
-  margin-left: 10px;
+  margin-left: 20px;
   margin-right: 10px;
   padding-top: 20px;
-  width: 450px;
+  width: 400px;
 }
 
 .name:hover {

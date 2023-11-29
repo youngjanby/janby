@@ -1,9 +1,9 @@
 import {Component, Injectable, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Catalog, SubCatalog} from "./interfaces/interfaces";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
-import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faAnglesRight, faTrash} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'my-lib-mini-table',
@@ -15,15 +15,19 @@ export class MiniTableComponent {
   @Input() dataCategory: Catalog[] = []
 
   formCategories: FormGroup = new FormGroup({
-    nameCategory: new FormControl(''),
-    nameSubCategory: new FormControl('')
+    nameCategory: new FormControl('', [Validators.required]),
+    nameSubCategory: new FormControl('', [Validators.required])
   })
   trashIcon: IconProp = faTrash
+  arrowIcon: IconProp = faAnglesRight
+  isActive: boolean = false
 
   currentSubCategories: SubCatalog[] = []
   selectedData: Catalog[] = []
 
+
   selectData(data: Catalog): void {
+    this.isActive = true
     this.selectedData = [data]
     this.currentSubCategories = this.dataSubCategory.filter((c) => {
       return c.catalog_product.id === data.id
@@ -32,7 +36,7 @@ export class MiniTableComponent {
 
   addSubCategory(): void {
     this.dataSubCategory.unshift({
-      id: '',
+      id: crypto.randomUUID(),
       name: this.formCategories.controls['nameSubCategory'].value,
       catalog_product: {
         id: this.selectedData[0].id
@@ -42,8 +46,8 @@ export class MiniTableComponent {
   }
 
   addCategory() {
-    return this.dataCategory.unshift({
-      id: '',
+    this.dataCategory.unshift({
+      id: crypto.randomUUID(),
       name: this.formCategories.controls['nameCategory'].value
     })
   }
