@@ -1,13 +1,14 @@
-<div mat-dialog-title class="header">
+<div class="containerFormGlobal">
+<div mat-dialog-title class="actions">
   <button class="delete button" (click)="delete()">Сохранить</button>
   <button
     class="save button"
     (click)="save()"
-    [disabled]="this.createForm.invalid"
-  >
+    [disabled]="this.createForm.invalid">
     Сохранить и закрыть
   </button>
 </div>
+
 <div mat-dialog-content [formGroup]="createForm" class="containerForm">
   <my-lib-input-form
     [control]="createForm.controls['nameFrom1C']"
@@ -36,7 +37,7 @@
     [isArea]="true"
   ></my-lib-input-form>
 
-  <my-lib-icon-form [data]="data" [dataForm]="createForm.controls['images']"></my-lib-icon-form>
+  <my-lib-icon-form [data]="data" (imageChanges)="saveNewImages($event)"></my-lib-icon-form>
 
   <my-lib-input-form
     [control]="createForm.controls['price']"
@@ -47,15 +48,19 @@
   <div>
     <span>Категория*</span>
   </div>
-  <my-lib-input-form
-    [control]="createForm.controls['categories'].controls['key']"
-    [placeholder]="'Введите Категорию'"
-  ></my-lib-input-form>
+  <div class="categoriesContainer">
+    <my-lib-input-form
+      [control]="createForm.controls['categories'].controls['key']"
+      [placeholder]="'Введите Категорию'"
+      [isSmallInput]="true"
+    ></my-lib-input-form>
 
-  <my-lib-input-form
-    [control]="createForm.controls['categories'].controls['value']"
-    [placeholder]="'Введите Подкатегорию'"
-  ></my-lib-input-form>
+    <my-lib-input-form
+      [control]="createForm.controls['categories'].controls['value']"
+      [placeholder]="'Введите Подкатегорию'"
+      [isSmallInput]="true"
+    ></my-lib-input-form>
+  </div>
 
   <my-lib-add-input
     [header]="'Объем'"
@@ -69,62 +74,8 @@
   [type]="TypeEnum.List"
   ></my-lib-add-input>
 
-  <div class="features headers">
-    <span>Характеристики*</span>
-    <div
-      class="featuresForm"
-      *ngFor="let character of characters.controls; let i = index"
-    >
-      <input
-        type="text"
-        placeholder="Название Характеристики"
-        class="input"
-        [formControl]="character.controls['key']"
-      />
-      <input
-        type="text"
-        placeholder="Значение Характеристики"
-        class="input"
-        [formControl]="character.controls['value']"
-      />
-      <fa-icon
-        (click)="deleteItem(characters.controls, i)"
-        [icon]="deleteIcon"
-      ></fa-icon>
-    </div>
-    <div class="help">
-      <span>Максимум 15 Характеристик</span>
-    </div>
-    <span class="add" (click)="addCharacter()">+ Добавить Характеристику</span>
-  </div>
-
-  <div class="tags">
-    <span class="headers">Теги товаров</span>
-    <mat-form-field class="example-chip-list" appearance="outline">
-      <mat-chip-grid #chipGrid aria-label="Введите тег">
-        <mat-chip-row
-          *ngFor="let fruit of fruits"
-          (removed)="remove(fruit)"
-          [editable]="true"
-          (edited)="edit(fruit, $event)"
-          [aria-description]="'press enter to edit' + fruit.name"
-        >
-          {{fruit.name}}
-          <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-        <input
-          placeholder="Введите тег"
-          [matChipInputFor]="chipGrid"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)"
-        />
-      </mat-chip-grid>
-    </mat-form-field>
-    <div class="help">
-      <span>Максимум 120 тегов</span>
-    </div>
-  </div>
+  <my-lib-tags
+  [fruits]="this.data.product.tags"
+  ></my-lib-tags>
+</div>
 </div>

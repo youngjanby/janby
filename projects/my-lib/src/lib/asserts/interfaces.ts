@@ -10,13 +10,17 @@ export interface Product extends ProductCreate {
   }
 
   interface Categories {
-    categoryName: string
-    categoryValue: string
+    name: string
+    value: string
   }
 
   interface Character {
     characterName: string
     characgerValue: string
+  }
+
+  export interface Image {
+    name: string
   }
 
   interface Brand {
@@ -36,7 +40,7 @@ export interface Product extends ProductCreate {
     brand: Brand,
     Article: string,
     description: string,
-    images: string[],
+    images: Image[],
     price: number,
     categories: Categories,
     volumes: Volumes[],
@@ -66,7 +70,7 @@ export interface Product extends ProductCreate {
     images: FormArray<FormControl<string>>
     price: FormControl<string>
     categories: FormGroup<{key: FormControl<string>, value: FormControl<string>}>
-    volumes: FormArray<FormControl<string>>
+    volumes: FormArray<FormGroup<{volume: FormControl<string>}>>
     characters: FormArray<FormControl>
   }
 

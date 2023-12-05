@@ -2,7 +2,7 @@
   <span>Изображения</span>
   <div
     class="imageContainer"
-    *ngFor="let img of data.product.images; let i = index"
+    *ngFor="let img of Images; let i = index"
   >
     <div class="img">
       <div class="icon">
@@ -19,8 +19,9 @@
   </div>
   <mat-form-field class="example-form-field" appearance="outline">
     <mat-label>Вставьте ссылку на Google Drive</mat-label>
-    <input matInput type="text" [formControl]="dataForm" />
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="addImage()">
+    
+    <input matInput type="text" [formControl]="link" />
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="addImage()" [disabled]="link.invalid" [disabled]="Images.length >= 5">
       <fa-icon [icon]="linkAccess"></fa-icon>
     </button>
   </mat-form-field>

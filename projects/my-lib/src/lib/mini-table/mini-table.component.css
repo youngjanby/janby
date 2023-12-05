@@ -1,0 +1,140 @@
+.category {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-bottom: 1px solid #EBECEF;
+  width: 100%;
+}
+
+.active {
+  background-color: #F8F8FA;
+}
+
+.hovered:hover {
+  cursor: pointer;
+}
+
+input {
+  border-radius: 10px;
+  height: 35px;
+  text-indent: 9px;
+  border: 1px solid rgb(41, 41, 41);
+  outline: none;
+}
+
+.trash {
+  background-color: #c06ecc;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 100px;
+  border: 0;
+  color: white;
+  transition: all 0.15s ease-in-out;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+fa-icon {
+  margin-left: 50%;
+  margin-top: 25%;
+}
+
+
+button {
+  background-color: #c06ecc;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 0;
+  color: white;
+  transition: all 0.15s ease-in-out;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #F8F8FA;
+  border-bottom: 1px solid #EBECEF;
+  border-top: 1px solid #EBECEF;
+  width: 100%;
+  height: 50px;
+}
+
+.content {
+  height: 600px;
+  width: 100%;
+  overflow: auto;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.categoryNull {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+fa-icon {
+  margin-right: 10px;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nullSub {
+  display: flex;
+  justify-content: center;
+}
+
+.trash:hover {
+  background-color: #7e4886;
+}
+
+
+button:disabled {
+  background-color: #7e4886;
+}
+
+.container {
+  margin-left: 20px;
+  margin-right: 10px;
+  padding-top: 20px;
+  width: 400px;
+}
+
+.name:hover {
+  cursor: pointer;
+}
+
+.tableContainer {
+  width: 100%;
+}
+
+.globalContainer {
+  display: flex;
+  flex-direction: row;
+  /*justify-content: space-around;*/
+}
+

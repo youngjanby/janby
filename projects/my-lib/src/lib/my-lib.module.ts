@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { IconFormComponent } from './icon-form/icon-form.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { AddInputComponent } from './add-input/add-input.component';
+import TagsComponent from './tags/tags.component';
+import {MiniTableComponent} from "./mini-table/mini-table.component";
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { AddInputComponent } from './add-input/add-input.component';
     DialogWindow,
     IconFormComponent,
     InputFormComponent,
-    AddInputComponent
+    AddInputComponent,
+    TagsComponent,
+    MiniTableComponent
   ],
   imports: [
     CommonModule,
@@ -51,6 +55,7 @@ import { AddInputComponent } from './add-input/add-input.component';
     MyLibComponent,
     NavToolComponent,
     TableComponent,
+    MiniTableComponent
   ]
 })
 export class MyLibModule { }

@@ -22,11 +22,29 @@ button:disabled {
     margin-left: 20px;
 }
 
-
 span {
     margin-left: 20px;
     font-size: 14px;
     color: black;
+}
+
+
+.categoriesContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.mat-dialog-content {
+  display: flex;
+  width: 100%;
+  overflow: auto;
+  padding: 16px 40px;
+  box-sizing: border-box;
+  max-height: calc(100% - 101px);
+}
+
+.mat-mdc-dialog-content {
+  max-height: 100%
 }
 
 .containerForm {
@@ -89,7 +107,7 @@ span {
             }
         }
 
-        
+
         .icon {
             display: flex;
             justify-content: center;
@@ -101,7 +119,7 @@ span {
             background-color: rgb(238, 238, 238);
         }
     }
-    
+
 }
 
 .deleteImg:hover {
@@ -134,6 +152,12 @@ span {
 .volumeForm, .featuresForm {
     display: flex;
     flex-direction: row;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
 }
 
 .add {
